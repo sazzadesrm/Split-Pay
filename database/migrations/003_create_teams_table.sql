@@ -1,0 +1,15 @@
+-- Migration: create teams table
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS teams (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description VARCHAR(2000) NULL,
+    default_currency CHAR(3) NOT NULL DEFAULT 'USD',
+    owner_id BIGINT UNSIGNED NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+    KEY idx_teams_owner (owner_id),
+    CONSTRAINT fk_teams_owner FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

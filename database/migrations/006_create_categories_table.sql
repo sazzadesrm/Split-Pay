@@ -1,0 +1,16 @@
+-- Migration: create categories table
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS categories (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    team_id BIGINT UNSIGNED NULL,
+    name VARCHAR(120) NOT NULL,
+    color VARCHAR(7) NOT NULL DEFAULT '#4F46E5',
+    icon VARCHAR(60) NULL,
+    sort_order INT NOT NULL DEFAULT 0,
+    is_archived TINYINT(1) NOT NULL DEFAULT 0,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    KEY idx_categories_team (team_id),
+    CONSTRAINT fk_categories_team FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

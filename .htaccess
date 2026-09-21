@@ -1,0 +1,13 @@
+# Fallback for shared hosting (e.g. StackCP) where the document root cannot
+# be changed to /public. Routes all requests into the public/ folder while
+# keeping app/, config/, database/, storage/, vendor/ and .env unreachable.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
+
+<FilesMatch "\.(env|sql|log|md)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

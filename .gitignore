@@ -1,0 +1,16 @@
+/vendor/
+/.env
+/composer.lock
+/storage/receipts/*
+!/storage/receipts/.gitkeep
+/storage/avatars/*
+!/storage/avatars/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/exports/*
+!/storage/exports/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+.DS_Store
+*.swp
+/.phpunit.result.cache
